@@ -1,10 +1,15 @@
 import React from "react";
 import GoogleButton from "react-google-button";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { googleLogin } from "../actions/auth";
 
 export const LoginScreen = () => {
+  const dispacth = useDispatch();
+
   const handleGoogleLogin = () => {
     console.log("login google");
+    dispacth(googleLogin());
   };
 
   return (

@@ -1,6 +1,23 @@
-export const googleLogin = (id, username) => {
+import { firebase, googleAuthProvider } from "../firebase/config-firebase";
+import { types } from "../types/types";
+
+export const googleLogin = () => {
+  return (dispatch) => {
+    firebase
+      .auth()
+      .signInWithPopup(googleAuthProvider)
+      .then(({ user }) => {
+        dispatch(login(user.uid, user.displayName));
+      });
+  };
+};
+
+export const login = (uid, displayName) => {
   return {
-    id,
-    username,
+    type: types.login,
+    payload: {
+      uid,
+      displayName,
+    },
   };
 };
