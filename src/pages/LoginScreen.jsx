@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import GoogleButton from "react-google-button";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { googleLogin } from "../actions/auth";
+import { googleLogin, emailAndPasswordLogin } from "../actions/auth";
 
 export const LoginScreen = () => {
   const dispacth = useDispatch();
+
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setData({
+      ...data,
+      [e.target.name]: value,
+    });
+  };
+
+  const { email, password } = data;
+
+  const handleEmailLogin = (e) => {
+    e.preventDefault();
+    dispacth(emailAndPasswordLogin(email, password));
+  };
 
   const handleGoogleLogin = () => {
     console.log("login google");
@@ -18,14 +37,17 @@ export const LoginScreen = () => {
       <hr />
 
       <div className="row container">
-        <form className="col s12">
+        <form onSubmit={handleEmailLogin} className="col s12">
           <div className="row">
             <div className="input-field col s12">
               <i className="material-icons prefix">email</i>
               <input
+                onChange={handleChange}
+                value={email}
+                name="email"
                 id="icon_prefix2"
                 className="materialize-textarea"
-                type="text"
+                type="email"
               />
               <label htmlFor="icon_prefix2">Email</label>
             </div>
@@ -33,16 +55,19 @@ export const LoginScreen = () => {
             <div className="input-field col s12">
               <i className="material-icons prefix">vpn_key</i>
               <input
+                onChange={handleChange}
+                value={password}
+                name="password"
                 id="icon_prefix"
                 className="materialize-textarea"
-                type="text"
+                type="password"
               />
               <label htmlFor="icon_prefix">Password</label>
             </div>
           </div>
 
           <button className="btn" type="submit">
-            Enviar
+            Login
           </button>
           <hr />
           <GoogleButton

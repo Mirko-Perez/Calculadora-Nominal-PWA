@@ -1,9 +1,10 @@
 import React from "react";
+import { AppScreen } from "../pages/AppScreen";
 
 export const AppRouter = () => {
   return (
-    <div>
-      <h1>AppRouter</h1>
-    </div>
+    <>
+      <AppScreen />
+    </>
   );
 };
