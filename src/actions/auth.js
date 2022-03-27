@@ -44,3 +44,12 @@ export const login = (uid, displayName) => {
     },
   };
 };
+
+export const Logout = () => {
+  return async (dispatch) => {
+    await firebase.auth().signOut();
+    dispatch({
+      type: types.logout,
+    });
+  };
+};

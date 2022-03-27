@@ -1,13 +1,24 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { Logout } from "../actions/auth";
 
 export const NavBar = () => {
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(Logout());
+  };
+
   return (
     <nav className="green">
       <div className="nav-wrapper">
         <span className="brand-logo">Calculadora Nominal</span>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li>
-            <button className="btn red waves-effect waves-light btn">
+            <button
+              onClick={handleLogout}
+              className="btn red waves-effect waves-light btn"
+            >
               Logout
             </button>
           </li>
