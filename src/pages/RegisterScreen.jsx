@@ -25,21 +25,21 @@ export const RegisterScreen = () => {
   const handleRegister = (e) => {
     e.preventDefault();
 
-    if (email.trim() === "" || email.trim().includes("@")) {
-      return;
-    }
+    // if (email.trim() === "" || email.trim().includes("@")) {
+    //   return;
+    // }
 
-    if (username.trim().length < 2) {
-      return;
-    }
+    // if (username.trim().length < 2) {
+    //   return;
+    // }
 
-    if (password.trim().length < 6) {
-      return;
-    }
+    // if (password.trim().length < 6) {
+    //   return;
+    // }
 
-    if (password.trim().length !== password2.trim().length) {
-      return;
-    }
+    // if (password.trim().length !== password2.trim().length) {
+    //   return;
+    // }
 
     dispatch(register(email, password, username));
   };
