@@ -34,3 +34,19 @@ export const crear = (data) => {
     payload: data,
   };
 };
+
+export const borrarRegistro = (id) => {
+  return async (dispatch, getState) => {
+    const { uid } = getState().auth;
+    await db.doc(`${uid}/nominas/nomina/${id}`).delete();
+
+    dispatch(borrar(id));
+  };
+};
+
+export const borrar = (id) => {
+  return {
+    type: types.nominaDelete,
+    payload: id,
+  };
+};

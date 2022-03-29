@@ -1,7 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { borrarRegistro } from "../actions/nominal";
+import { db } from "../firebase/config-firebase";
 
 export const Element = ({ data }) => {
-  const { fecha, pago } = data;
+  const dispach = useDispatch();
+
+  const { fecha, pago, id } = data;
   let FechaFormato;
 
   if (fecha.seconds) {
@@ -11,12 +16,18 @@ export const Element = ({ data }) => {
     FechaFormato = fecha;
   }
 
+  const handleDelete = () => {
+    dispach(borrarRegistro(id));
+  };
+
   return (
     <>
       <td>{FechaFormato}</td>
       <td>{pago}</td>
       <td>
-        <button className="btn red">Borrar</button>
+        <button onClick={handleDelete} className="btn red">
+          Borrar
+        </button>
       </td>
     </>
   );
