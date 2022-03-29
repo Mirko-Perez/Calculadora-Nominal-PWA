@@ -41,7 +41,7 @@ export const AuthRouter = () => {
           </Route>
 
           <Route element={<PublicRoute log={log} />}>
-            <Route path="/login" element={<LoginScreen />} />
+            <Route path="/*" element={<LoginScreen />} />
             <Route path="/register" element={<RegisterScreen />} />
           </Route>
         </Routes>
