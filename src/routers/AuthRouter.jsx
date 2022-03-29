@@ -9,6 +9,8 @@ import { login } from "../actions/auth";
 import { AppRouter } from "./AppRouter";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
+import { loadData } from "../helpers/loadData";
+import { leerRegistros } from "../actions/nominal";
 
 export const AuthRouter = () => {
   const dispatch = useDispatch();
@@ -16,10 +18,14 @@ export const AuthRouter = () => {
   const [log, setLog] = useState(false);
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
         dispatch(login(user.uid, user.displayName));
         setLog(true);
+
+        const nominaData = await loadData(user.uid);
+
+        dispatch(leerRegistros(nominaData));
       } else {
         setLog(false);
       }
