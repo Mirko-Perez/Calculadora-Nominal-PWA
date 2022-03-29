@@ -7,7 +7,10 @@ const initialState = {
 export const nominalReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.nominaAdd:
-      return { ...state, data: [...state, action.payload] };
+      return {
+        ...state,
+        data: [...state.data, action.payload],
+      };
 
     case types.nominaRead:
       return {
@@ -22,6 +25,13 @@ export const nominalReducer = (state = initialState, action) => {
           return nomina.id !== action.payload;
         }),
       };
+
+    case types.nominaClean:
+      return {
+        ...state,
+        data: [],
+      };
+
     default:
       return state;
   }

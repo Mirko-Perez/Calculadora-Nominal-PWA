@@ -1,11 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Logout } from "../actions/auth";
+import { limpiar } from "../actions/nominal";
 
 export const NavBar = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
+    dispatch(limpiar());
     dispatch(Logout());
   };
 

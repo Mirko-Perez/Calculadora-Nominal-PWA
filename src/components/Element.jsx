@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { borrarRegistro } from "../actions/nominal";
-import { db } from "../firebase/config-firebase";
 
 export const Element = ({ data }) => {
   const dispach = useDispatch();
@@ -23,10 +22,10 @@ export const Element = ({ data }) => {
   return (
     <>
       <td>{FechaFormato}</td>
-      <td>{pago}</td>
+      <td>${pago}</td>
       <td>
         <button onClick={handleDelete} className="btn red">
-          Borrar
+          <i class="material-icons">delete_forever</i>
         </button>
       </td>
     </>

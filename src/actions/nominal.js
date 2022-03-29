@@ -50,3 +50,9 @@ export const borrar = (id) => {
     payload: id,
   };
 };
+
+export const limpiar = () => {
+  return {
+    type: types.nominaClean,
+  };
+};
